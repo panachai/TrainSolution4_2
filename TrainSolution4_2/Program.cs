@@ -7,20 +7,102 @@ namespace TrainSolution4_2
 {
     class Program
     {
+
+        public Program()
+        {
+
+        }
+
         static void Main(string[] args)
         {
-            int mark = 0, i = 1; ;          //กำหนด ค่าเริ่มต้น ของตัวแปร
-            Dice dic1 = new Dice();     // สร้าง อินสแตนด์ dic1 สำหรับสุ่มตัวเลขการโยนลูกเต๋า
-            while (mark != 1)           //ให้วนจนกว่าการโยนลูกเต๋าจะได้เลขไม่เท่ากับ 1 (ค่าเริ่มต้น 0 )
-            {                   // หลังจากการวนรอบจะได้ค่า 1- 6 ถ้าได้เลข 1 จะหยุดวนรอบ
-                mark = dic1.Throw();        //เก็บค่าการโยนลูกเต๋าไว้ในตัวแปร mark
-                Console.WriteLine(" {0} Mark of Dice : {1} ", i, mark); //แสดงจำนวนครั้ง (i) และแต้ม(mark)
-                System.Threading.Thread.Sleep(10);  // หน่วงเวลาไว้เพื่อไม่ให้แต้มซ้ำกันในขณะสุ่มตัวเลข
-                i = i + 1;                  // เพิ่มจำนวนครั้งที่โยนลูกเต๋า
+            Console.WriteLine("Choose type Dice\nEnter 1 = 'OneDice' Enter 2 = 'SnakeEye'");
+            Int32 readData = Convert.ToInt32(Console.ReadLine());
+
+            Console.WriteLine();
+
+            int mark, mark2, i;
+            Dice dic1;
+
+            i = 1;
+            mark = 0;
+            mark2 = 0;
+            dic1 = new Dice();
+
+            if (readData == 1)
+            {
+
+                //OneDice();
+                while (mark != 1)
+                {
+                    mark = dic1.Throw();
+                    Console.WriteLine(" {0} Mark of Dice : {1} ", i, mark);
+                    System.Threading.Thread.Sleep(10);
+                    i = i + 1;
+                }
+                Console.WriteLine("Throw of dice = 1 is : " + (i - 1) + " time ");
+                Console.ReadLine();
             }
-            Console.WriteLine("Throw of dice = 1 is : " + (i - 1) + " time "); //สรุปการโยนลูกเต๋าให้เท่ากับ 1 ว่ากี่ครั้ง
+            else if (readData == 2)
+            {
+                //SnakeEye();
+                while (mark != 1 || mark2 != 1)
+                {
+                    mark = dic1.Throw();
+                    mark2 = dic1.Throw();
+                    Console.WriteLine(" {0} Mark of Dice 1 : {1} ", i, mark);
+                    Console.WriteLine(" {0} Mark of Dice 2 : {1} ", i, mark2);
+                    System.Threading.Thread.Sleep(10);
+                    i = i + 1;
+                }
+                Console.WriteLine("Throw of dice = 1 is : " + (i - 1) + " time ");
+                Console.ReadLine();
+            }
+        }
+        /*
+        public  void OneDice()
+        {
+            
+            //i = 1;
+           // mark = 0;
+           // mark2 = 0;
+           // dic1 = new Dice();
+            
+
+            while (mark != 1)
+            {
+                mark = dic1.Throw();
+                Console.WriteLine(" {0} Mark of Dice : {1} ", i, mark);
+                System.Threading.Thread.Sleep(10);
+                i = i + 1;
+            }
+            Console.WriteLine("Throw of dice = 1 is : " + (i - 1) + " time ");
+            Console.ReadLine();
+
+        }
+
+        public  void SnakeEye()
+        {
+           
+            //i = 1;
+            //mark = 0;
+            //mark2 = 0;
+            //dic1 = new Dice();
+            
+
+            while (mark != 1 || mark2 != 1)
+            {
+                mark = dic1.Throw();
+                mark2 = dic1.Throw();
+                Console.WriteLine(" {0} Mark of Dice 1 : {1} ", i, mark);
+                Console.WriteLine(" {0} Mark of Dice 2 : {1} ", i, mark2);
+                System.Threading.Thread.Sleep(10);
+                i = i + 1;
+            }
+            Console.WriteLine("Throw of dice = 1 is : " + (i - 1) + " time ");
             Console.ReadLine();
         }
+        */
+
     }
     class Dice
     {
